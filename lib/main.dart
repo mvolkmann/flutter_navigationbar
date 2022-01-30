@@ -88,9 +88,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Flutter NavigationBar'),
-      ),
       body: Center(
         child: options[_pageIndex].widget,
       ),
@@ -141,7 +138,17 @@ class ExplorePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MyPage(
       title: 'Explore',
-      child: Text('This is the Explore page.'),
+      child: Column(
+        children: [
+          Text('This is the Explore page.'),
+          ElevatedButton(
+            child: Text('Go To Saved'),
+            onPressed: () {
+              Navigator.pushNamed(context, '/saved');
+            },
+          )
+        ],
+      ),
     );
   }
 }
