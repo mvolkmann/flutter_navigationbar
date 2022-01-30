@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
 
@@ -22,7 +22,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoApp(
       home: HomePage(),
-      theme: CupertinoThemeData(brightness: Brightness.light),
+      theme: CupertinoThemeData(
+        brightness: Brightness.light,
+        primaryColor:
+            CupertinoColors.systemGreen, // color of selected navbar icons
+        // This sets the color of the back button icon in the app bar.
+        textTheme: CupertinoTextThemeData(
+          primaryColor: CupertinoColors.white,
+        ),
+      ),
       title: 'Flutter NavigationBar',
     );
   }
@@ -32,9 +40,12 @@ class HomePage extends StatelessWidget {
   static const route = '/';
 
   static const options = <NavOption>[
-    NavOption(icon: Icons.explore, label: 'Explore', widget: ExplorePage()),
-    NavOption(icon: Icons.commute, label: 'Commute', widget: CommutePage()),
-    NavOption(icon: Icons.bookmark_border, label: 'Saved', widget: SavedPage()),
+    NavOption(
+        icon: CupertinoIcons.compass, label: 'Explore', widget: ExplorePage()),
+    NavOption(
+        icon: CupertinoIcons.bus, label: 'Commute', widget: CommutePage()),
+    NavOption(
+        icon: CupertinoIcons.bookmark, label: 'Saved', widget: SavedPage()),
   ];
 
   HomePage({Key? key}) : super(key: key);
@@ -82,7 +93,7 @@ class MyPage extends StatelessWidget {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         backgroundColor: CupertinoColors.systemBlue,
-        middle: Text(title),
+        middle: Text(title, style: TextStyle(color: CupertinoColors.white)),
       ),
       child: Center(child: child),
     );
@@ -116,7 +127,7 @@ class ExplorePage extends StatelessWidget {
         mainAxisSize: MainAxisSize.min, // allows centering
         children: [
           Text('This is the Explore page.'),
-          ElevatedButton(
+          CupertinoButton.filled(
             child: Text('Go To Saved'),
             onPressed: () {
               Navigator.pushNamed(context, SavedPage.route);
