@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './extensions/widget_extensions.dart';
 
 void main() => runApp(const MyApp());
 
@@ -87,14 +88,16 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: options[_pageIndex].widget,
-      ),
-      // Uncomment one of the next two lines.
-      bottomNavigationBar: getBottomNavigationBar(),
-      //bottomNavigationBar: getNavigationBar(),
-    );
+    return Column(
+      children: [
+        Expanded(
+          child: options[_pageIndex].widget,
+        ),
+        // Uncomment one of the next two lines.
+        getBottomNavigationBar(), // more attractive
+        //getNavigationBar(), // less attractive
+      ],
+    ).border();
   }
 }
 
