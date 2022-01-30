@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import './extensions/widget_extensions.dart';
 
 void main() => runApp(const MyApp());
 
@@ -36,58 +35,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   static const route = '/';
 
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   static const options = <NavOption>[
     NavOption(icon: Icons.explore, label: 'Explore', widget: ExplorePage()),
     NavOption(icon: Icons.commute, label: 'Commute', widget: CommutePage()),
     NavOption(icon: Icons.bookmark_border, label: 'Saved', widget: SavedPage()),
   ];
-
-  var _pageIndex = 0;
-
-  // First option.
-  BottomNavigationBar getBottomNavigationBar() {
-    return BottomNavigationBar(
-      items: [
-        for (var option in options)
-          BottomNavigationBarItem(
-            icon: Icon(option.icon),
-            label: option.label,
-          )
-      ],
-      onTap: (int index) {
-        setState(() => _pageIndex = index);
-      },
-      currentIndex: _pageIndex,
-      selectedItemColor: Colors.green,
-    );
-  }
-
-  // Second option.
-  NavigationBar getNavigationBar() {
-    return NavigationBar(
-      destinations: [
-        for (var option in options)
-          NavigationDestination(
-            icon: Icon(option.icon),
-            label: option.label,
-          )
-      ],
-      onDestinationSelected: (int index) {
-        setState(() => _pageIndex = index);
-      },
-      selectedIndex: _pageIndex,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
