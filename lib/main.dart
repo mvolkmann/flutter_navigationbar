@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import './extensions/widget_extensions.dart';
 
@@ -20,17 +21,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter NavigationBar',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+    return CupertinoApp(
       home: const Home(),
       routes: {
         CommutePage.route: (_) => CommutePage(),
         ExplorePage.route: (_) => ExplorePage(),
         SavedPage.route: (_) => SavedPage(),
       },
+      theme: CupertinoThemeData(brightness: Brightness.light),
+      title: 'Flutter NavigationBar',
     );
   }
 }
@@ -88,16 +87,21 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: options[_pageIndex].widget,
-        ),
-        // Uncomment one of the next two lines.
-        getBottomNavigationBar(), // more attractive
-        //getNavigationBar(), // less attractive
-      ],
-    ).border();
+    var items = options
+        .map(
+          (option) => BottomNavigationBarItem(
+            icon: Icon(option.icon),
+            label: option.label,
+          ),
+        )
+        .toList();
+
+    return CupertinoTabScaffold(
+      tabBar: CupertinoTabBar(items: items),
+      tabBuilder: (context, index) => CupertinoTabView(
+        builder: (context) => options[index].widget,
+      ),
+    );
   }
 }
 
@@ -113,11 +117,12 @@ class MyPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
+    return CupertinoPageScaffold(
+      navigationBar: CupertinoNavigationBar(
+        backgroundColor: CupertinoColors.systemBlue,
+        middle: Text(title),
       ),
-      body: Center(child: child),
+      child: Center(child: child),
     );
   }
 }
