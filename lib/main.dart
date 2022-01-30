@@ -37,6 +37,8 @@ class HomePage extends StatelessWidget {
     NavOption(icon: Icons.bookmark_border, label: 'Saved', widget: SavedPage()),
   ];
 
+  HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     var items = options
@@ -52,6 +54,8 @@ class HomePage extends StatelessWidget {
       tabBar: CupertinoTabBar(items: items),
       tabBuilder: (context, index) => CupertinoTabView(
         builder: (context) => options[index].widget,
+        // Unlike in Material, with Cupertino the routes
+        // are define here instead of on the "App" widget.
         routes: {
           CommutePage.route: (_) => CommutePage(),
           ExplorePage.route: (_) => ExplorePage(),
