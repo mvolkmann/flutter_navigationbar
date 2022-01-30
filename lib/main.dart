@@ -22,8 +22,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
-      home: const Home(),
+      //home: const Home(),
+      initialRoute: HomePage.route,
       routes: {
+        HomePage.route: (_) => HomePage(),
         CommutePage.route: (_) => CommutePage(),
         ExplorePage.route: (_) => ExplorePage(),
         SavedPage.route: (_) => SavedPage(),
@@ -34,14 +36,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  static const route = '/';
+
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
+class _HomePageState extends State<HomePage> {
   static const options = <NavOption>[
     NavOption(icon: Icons.explore, label: 'Explore', widget: ExplorePage()),
     NavOption(icon: Icons.commute, label: 'Commute', widget: CommutePage()),
@@ -98,9 +102,12 @@ class _HomeState extends State<Home> {
 
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(items: items),
-      tabBuilder: (context, index) => CupertinoTabView(
-        builder: (context) => options[index].widget,
-      ),
+      tabBuilder: (context, index) {
+        print('tabBuilder: index = $index');
+        return CupertinoTabView(
+          builder: (context) => options[index].widget,
+        );
+      },
     );
   }
 }
