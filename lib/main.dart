@@ -102,12 +102,9 @@ class _HomePageState extends State<HomePage> {
 
     return CupertinoTabScaffold(
       tabBar: CupertinoTabBar(items: items),
-      tabBuilder: (context, index) {
-        print('tabBuilder: index = $index');
-        return CupertinoTabView(
-          builder: (context) => options[index].widget,
-        );
-      },
+      tabBuilder: (context, index) => CupertinoTabView(
+        builder: (context) => options[index].widget,
+      ),
     );
   }
 }
