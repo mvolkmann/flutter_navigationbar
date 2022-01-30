@@ -142,6 +142,7 @@ class ExplorePage extends StatelessWidget {
     return MyPage(
       title: 'Explore',
       child: Column(
+        mainAxisSize: MainAxisSize.min, // allows centering
         children: [
           Text('This is the Explore page.'),
           ElevatedButton(
