@@ -25,10 +25,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      //home: const HomePage(),
+      initialRoute: HomePage.route,
       routes: {
         CommutePage.route: (_) => CommutePage(),
         ExplorePage.route: (_) => ExplorePage(),
+        HomePage.route: (_) => HomePage(),
         SavedPage.route: (_) => SavedPage(),
       },
     );
@@ -36,6 +38,8 @@ class MyApp extends StatelessWidget {
 }
 
 class HomePage extends StatefulWidget {
+  static const route = '/';
+
   const HomePage({Key? key}) : super(key: key);
 
   @override
