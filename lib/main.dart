@@ -21,14 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CupertinoApp(
-      //home: const Home(),
-      initialRoute: HomePage.route,
-      routes: {
-        HomePage.route: (_) => HomePage(),
-        CommutePage.route: (_) => CommutePage(),
-        ExplorePage.route: (_) => ExplorePage(),
-        SavedPage.route: (_) => SavedPage(),
-      },
+      home: HomePage(),
       theme: CupertinoThemeData(brightness: Brightness.light),
       title: 'Flutter NavigationBar',
     );
@@ -59,6 +52,12 @@ class HomePage extends StatelessWidget {
       tabBar: CupertinoTabBar(items: items),
       tabBuilder: (context, index) => CupertinoTabView(
         builder: (context) => options[index].widget,
+        routes: {
+          CommutePage.route: (_) => CommutePage(),
+          ExplorePage.route: (_) => ExplorePage(),
+          HomePage.route: (_) => HomePage(),
+          SavedPage.route: (_) => SavedPage(),
+        },
       ),
     );
   }
