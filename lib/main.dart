@@ -27,9 +27,9 @@ class MyApp extends StatelessWidget {
       ),
       home: const Home(),
       routes: {
-        '/commute': (_) => CommutePage(),
-        '/explore': (_) => ExplorePage(),
-        '/saved': (_) => SavedPage(),
+        CommutePage.route: (_) => CommutePage(),
+        ExplorePage.route: (_) => ExplorePage(),
+        SavedPage.route: (_) => SavedPage(),
       },
     );
   }
@@ -123,6 +123,8 @@ class MyPage extends StatelessWidget {
 }
 
 class CommutePage extends StatelessWidget {
+  static const route = '/commute';
+
   const CommutePage({Key? key}) : super(key: key);
 
   @override
@@ -135,6 +137,8 @@ class CommutePage extends StatelessWidget {
 }
 
 class ExplorePage extends StatelessWidget {
+  static const route = '/explore';
+
   const ExplorePage({Key? key}) : super(key: key);
 
   @override
@@ -148,7 +152,7 @@ class ExplorePage extends StatelessWidget {
           ElevatedButton(
             child: Text('Go To Saved'),
             onPressed: () {
-              Navigator.pushNamed(context, '/saved');
+              Navigator.pushNamed(context, SavedPage.route);
             },
           )
         ],
@@ -158,6 +162,8 @@ class ExplorePage extends StatelessWidget {
 }
 
 class SavedPage extends StatelessWidget {
+  static const route = '/saved';
+
   const SavedPage({Key? key}) : super(key: key);
 
   @override
