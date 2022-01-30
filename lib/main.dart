@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Home(),
+      home: const HomePage(),
       routes: {
         CommutePage.route: (_) => CommutePage(),
         ExplorePage.route: (_) => ExplorePage(),
@@ -35,14 +35,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
+class _HomePageState extends State<HomePage> {
   static const options = <NavOption>[
     NavOption(icon: Icons.explore, label: 'Explore', widget: ExplorePage()),
     NavOption(icon: Icons.commute, label: 'Commute', widget: CommutePage()),
